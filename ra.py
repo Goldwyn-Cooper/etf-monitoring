@@ -196,7 +196,7 @@ class RA:
             with ThreadPoolExecutor() as executor:
                 for symbol in self.etf_list['itemcode']:
                     futures.append(executor.submit(self.get_price, symbol))
-
+                
                 for future in as_completed(futures):
                     symbol, df = future.result()
                     if not df.empty:
