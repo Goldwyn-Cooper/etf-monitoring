@@ -180,7 +180,7 @@ class RA:
                     .get('siseJson.naver', params=params)
         data = ast.literal_eval(response.text.replace('\n', ''))
         df = pd.DataFrame(data[1:], columns=data[0]).iloc[:, [2, 3, 4]]
-        return symbol, df
+        return (symbol, df)
     
     @contextmanager
     def measure_execution_time(self, msg):
