@@ -21,7 +21,7 @@ class RA:
         self.tele_api = API(
             f'https://api.telegram.org/bot{os.getenv("tele_bot_token")}')
         # CONSTANT
-        self.PERIODS = (5, 8, 13, 21, 34)
+        self.PERIODS = (3, 5, 8, 13, 21)
         # --------
         self.send_msg(f'##############')
 
