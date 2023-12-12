@@ -280,7 +280,9 @@ class RA:
 
     def get_position(self, risk=0.01, candidate=4):
         trading_balance = self.account_balance\
-            .loc[['주식', 'RP/발행어음', '예수금+CMA'],'평가금액'].sum()
+            .drop(columns=['채권']).loc[:,'평가금액'].sum()
+        # trading_balance = self.account_balance\
+        #     .loc[['주식', 'RP/발행어음', '예수금+CMA'],'평가금액'].sum()
         self.momentum['Enter'] = (risk / self.momentum['Risk'])\
             .apply(lambda x: min(1, x))\
             .apply(lambda x: int(
