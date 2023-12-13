@@ -158,12 +158,15 @@ class RA:
     def screen_etf_list_table(cls, data: dict):
         df = pd.DataFrame(data).loc[:,
          ['itemcode', 'etfTabCode', 'itemname', 'quant', 'marketSum']]
-        exclude_keywords = ['액티브', '레버리지', '2X', '인도']
+        exclude_keywords = ['액티브', '레버리지', '2X',
+                            '닥100', 'P500',
+                            '배당', '단기', '금리', '리츠', '혼합',
+                            '글로벌', 'BBIG', '삼성', '인도']
         filtered_df = df[~df['itemname'].str.contains('|'.join(exclude_keywords)) &
                         (df['marketSum'] >= df.marketSum.median() * 2) &
                         (df['etfTabCode'] != 1)]
         filtered_df = filtered_df[
-                        (filtered_df['quant'] >= filtered_df.quant.median() * 2)]
+                        (filtered_df['quant'] >= filtered_df.quant.median())]
         filtered_df.reset_index(drop=True, inplace=True)
         return filtered_df
 
